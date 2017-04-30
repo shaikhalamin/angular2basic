@@ -1,0 +1,42 @@
+<p><strong>Name: </strong>{{name}}</p>
+<b>
+  <strong>My Email is: </strong>{{email}}
+</b>
+<p><strong>My Address is: </strong>{{address.street}} {{address.city}} {{address.country}}</p>
+<button (click)="toggleHobies()">{{ showHobbies ? "Hide Hobbies" : "Show Hobbies" }}</button>
+<div *ngIf="showHobbies">
+  <p><strong>Hobies: </strong></p>
+  <ul>
+    <li *ngFor="let hobby of hobbies; let i=index">
+      {{hobby}} <button (click)="deleteHobby(i)">X</button>
+    </li>
+  </ul>
+  <form (submit)="addHoby(hobby.value)">
+    <label>Add Hoby :</label><br />
+    <input type="text" #hobby/>
+  </form>
+</div>
+<hr>
+<h3>Edit User Information</h3>
+<form>
+  <label>Name :</label><br />
+  <input type="text" name="name" [(ngModel)]="name"/>
+  <br />
+  <label>Email :</label><br />
+  <input type="text" name="email" [(ngModel)]="email"/>
+  <br />
+  <label>Address Street :</label><br />
+  <input type="text" name="address.street" [(ngModel)]="address.street"/>
+  <br />
+  <label>Address City:</label><br />
+  <input type="text" name="address.city" [(ngModel)]="address.city"/>
+  <br />
+  <label>Address Country:</label><br />
+  <input type="text" name="address.country" [(ngModel)]="address.country"/>
+</form>
+<hr>
+<h3>Posts from JSON API</h3>
+<div *ngFor="let post of posts">
+  <h3>{{post.title}}</h3>
+  <p>{{post.body}}</p>
+</div>
